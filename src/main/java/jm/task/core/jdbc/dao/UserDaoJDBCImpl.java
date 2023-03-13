@@ -11,7 +11,7 @@ public class UserDaoJDBCImpl implements UserDao {
     public UserDaoJDBCImpl() {
 
     }
-
+    @Override
     public void createUsersTable() {
         try (Connection connection= Util.getMySQLConnection()){
             Statement statement = connection.createStatement();
@@ -21,7 +21,7 @@ public class UserDaoJDBCImpl implements UserDao {
             throw new RuntimeException(e);
         }
     }
-
+    @Override
     public void dropUsersTable() {
         try (Connection connection= Util.getMySQLConnection()){
             Statement statement = connection.createStatement();
@@ -31,10 +31,10 @@ public class UserDaoJDBCImpl implements UserDao {
             throw new RuntimeException(e);
         }
     }
-
+    @Override
     public void saveUser(String name, String lastName, byte age) {
-        final String insert = ("INSERT INTO users (name, lastname, age)"+"VALUES (?,?,?)");
-        try (Connection connection= Util.getMySQLConnection(); PreparedStatement statement = connection.prepareStatement(insert)){
+        final String INSERT = ("INSERT INTO users (name, lastname, age)"+"VALUES (?,?,?)");
+        try (Connection connection= Util.getMySQLConnection(); PreparedStatement statement = connection.prepareStatement(INSERT)){
             statement.setString(1,name);
             statement.setString(2,lastName);
             statement.setByte(3,age);
@@ -44,10 +44,10 @@ public class UserDaoJDBCImpl implements UserDao {
             throw new RuntimeException(e);
         }
     }
-
+    @Override
     public void removeUserById(long id) {
-        final String delete = ("DELETE FROM users WHERE id = ?");
-        try (Connection connection= Util.getMySQLConnection(); PreparedStatement statement = connection.prepareStatement(delete)){
+        final String DELETE = ("DELETE FROM users WHERE id = ?");
+        try (Connection connection= Util.getMySQLConnection(); PreparedStatement statement = connection.prepareStatement(DELETE)){
             statement.setString(1, String.valueOf(id));
             statement.execute();
             System.out.println("user удален с id"+id);
@@ -55,7 +55,7 @@ public class UserDaoJDBCImpl implements UserDao {
             throw new RuntimeException(e);
         }
     }
-
+    @Override
     public List<User> getAllUsers() {
         List <User> users = new ArrayList<>();
         try (Connection connection= Util.getMySQLConnection();Statement statement = connection.createStatement()){
@@ -75,7 +75,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
         return users;
     }
-
+    @Override
     public void cleanUsersTable() {
         try (Connection connection= Util.getMySQLConnection()){
             Statement statement = connection.createStatement();
