@@ -33,7 +33,7 @@ public class Util {
         }
         return null;
     }
-    public static SessionFactory getSessionFactory(){
+/*    public static SessionFactory getSessionFactory(){
         if (sessionFactory == null){
             try{
                 Configuration configuration=new Configuration();
@@ -56,6 +56,6 @@ public class Util {
             }
         }
         return sessionFactory;
-    }
+    }*/
 // реализуйте настройку соеденения с БД
 }
