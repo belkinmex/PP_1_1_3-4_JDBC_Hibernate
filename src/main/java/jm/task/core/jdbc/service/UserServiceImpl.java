@@ -3,39 +3,38 @@ package jm.task.core.jdbc.service;
 import jm.task.core.jdbc.dao.UserDaoJDBCImpl;
 import jm.task.core.jdbc.model.User;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-public class UserServiceImpl extends UserDaoJDBCImpl implements UserService {
+public class UserServiceImpl implements UserService {
+    UserDaoJDBCImpl table = new UserDaoJDBCImpl();
     @Override
     public void createUsersTable() {
-        super.createUsersTable();
+        table.createUsersTable();
     }
 
     @Override
     public void dropUsersTable() {
-        super.dropUsersTable();
+        table.dropUsersTable();
     }
 
     @Override
     public void saveUser(String name, String lastName, byte age) {
-        super.saveUser(name, lastName, age);
+        table.saveUser(name, lastName, age);
     }
 
     @Override
     public void removeUserById(long id) {
-        super.removeUserById(id);
+        table.removeUserById(id);
     }
 
     @Override
     public List<User> getAllUsers() {
-        return super.getAllUsers();
+
+        return table.getAllUsers();
     }
 
     @Override
     public void cleanUsersTable() {
-        super.cleanUsersTable();
+        table.cleanUsersTable();
     }
 }

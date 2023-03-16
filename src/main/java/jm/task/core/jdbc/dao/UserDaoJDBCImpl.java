@@ -58,8 +58,9 @@ public class UserDaoJDBCImpl implements UserDao {
     @Override
     public List<User> getAllUsers() {
         List <User> users = new ArrayList<>();
-        try (Connection connection= Util.getMySQLConnection();Statement statement = connection.createStatement()){
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM users");
+        final String SQL_SELECT= "SELECT * FROM users";
+        try (Connection connection= Util.getMySQLConnection(); PreparedStatement statement = connection.prepareStatement(SQL_SELECT)){
+            ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()){
                 Long id = resultSet.getLong("id");
                 String name = resultSet.getString("name");
